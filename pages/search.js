@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import {format} from "date-fns"
-import infoCard from "../components/infoCard"
+import InfoCard from "../components/InfoCard"
 
 function Search({searchResults}) {
     const router = useRouter()
@@ -16,7 +16,7 @@ function Search({searchResults}) {
     const formattedendDate= format(new Date(endDate),"dd MMMM yy")
     const range = `${formattedStartDate} - ${formattedendDate}`
     return (
-        <div >
+        <div className="flex flex-col" >
             <Header placeholder={`${location} | ${range} | ${noOfGuests} guests`}/>
             <main className="flex">
                 <section className="flex-grow pt-14 px-6">
@@ -29,26 +29,29 @@ function Search({searchResults}) {
                         <p className="button">Rooms and Beds</p>
                         <p className="button">More filters</p>
                     </div>
+                    <div >
 
-                    {searchResults.map(({
-                        img,
-                        location,
-                        title,
-                        description,
-                        star,
-                        price,
-                        total
-                    })=>(
-                        <infoCard
-                         img={img}
-                         location={location}
-                         title={title}
-                         description={description}
-                         star={star}
-                         price={price}
-                         total={total}
-                          />
-                    ))}
+                        {searchResults.map(({
+                            img,
+                            location,
+                            title,
+                            description,
+                            star,
+                            price,
+                            total
+                        })=>(
+                            <InfoCard
+                            key={img}
+                            img={img}
+                            location={location}
+                            title={title}
+                            description={description}
+                            star={star}
+                            price={price}
+                            total={total}
+                            />
+                        ))}
+                    </div>
                 </section>
             </main>
             <Footer />
@@ -59,7 +62,7 @@ function Search({searchResults}) {
 export default Search
 export async function getServerSideProps(){
     const searchResults = await fetch("https://links.papareact.com/isz")
-    .then(then(res => res.json()))
+    .then(res => res.json())
 
     return {
         props:{
