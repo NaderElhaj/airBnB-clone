@@ -2,8 +2,7 @@ import { useRouter } from "next/dist/client/router"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import {format} from "date-fns"
-import InfoCard from "../components/InfoCard"
-
+import InfoCard from"../components/InfoCard"
 function Search({searchResults}) {
     const router = useRouter()
     const {
