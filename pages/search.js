@@ -2,7 +2,7 @@ import { useRouter } from "next/dist/client/router"
 import Footer from "../components/Footer"
 import Header from "../components/Header"
 import {format} from "date-fns"
-import infoCard from "../components/infoCard"
+import InfoCard from "../components/infoCard"
 function Search({searchResults}) {
     const router = useRouter()
     const {
@@ -39,7 +39,7 @@ function Search({searchResults}) {
                             price,
                             total
                         })=>(
-                            <infoCard
+                            <InfoCard
                             key={img}
                             img={img}
                             location={location}
